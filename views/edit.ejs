@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            margin: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f0f4f8;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
+            border: 1px solid #dee2e6;
+        }
+
+        .form-title {
+            margin-bottom: 20px;
+        }
+
+        .form-control,
+        .form-select,
+        textarea {
+            background-color: #f7f7f7;
+            border: 1px solid #ced4da;
+        }
+
+        .form-control:focus,
+        .form-select:focus,
+        textarea:focus {
+            border-color: #6d766d;
+            box-shadow: 0 0 5px rgba(237, 254, 238, 0.128);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h2 class="text-center mb-4 form-title fw-bold text-secondary">Edit Book Details</h2>
+            <form action="/insertData" method="post">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="title" class="form-label fw-bold fs-4">Title:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control fs-5" id="title" name="title"
+                                    placeholder="Enter book title" value="<%= data.title %>">
+                                <input type="hidden" name="editId" value="<%= data.id %>">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="author" class="form-label fw-bold fs-4">Author:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control fs-5" id="author" name="author"
+                                    placeholder="Enter author name" value="<%= data.author %>">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="price" class="form-label fw-bold fs-4">Price:</label>
+                            </td>
+                            <td>
+                                <input type="number" class="form-control fs-5" id="price" name="price"
+                                    placeholder="Enter price" value="<%= data.price %>">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label class="form-label fw-bold fs-4">Language:</label>
+                            </td>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="english" name="language"
+                                        value="English" <% if(data.language.includes('English')) { %> checked <% } %>>
+                                        <label class="form-check-label fs-5" for="english">English</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="hindi" name="language"
+                                        value="Hindi" <% if(data.language.includes('Hindi')) { %> checked <% } %>>
+                                        <label class="form-check-label fs-5" for="hindi">Hindi</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="gujarati" name="language"
+                                        value="Gujarati" <% if(data.language.includes('Gujarati')) { %> checked <% } %>>
+                                        <label class="form-check-label fs-5" for="gujarati">Gujarati</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="marathi" name="language"
+                                        value="Marathi" <% if(data.language.includes('Marathi')) { %> checked <% } %>>
+                                        <label class="form-check-label fs-5" for="marathi">Marathi</label>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label class="form-label fw-bold fs-4">Pages:</label>
+                            </td>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pages" id="pages1" value="50-100"
+                                        <% if(data.pages=='50-100' ){ %> checked <% } %>>
+                                        <label class="form-check-label fs-5" for="pages1">50-100</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pages" id="pages2"
+                                        value="100-200" <% if(data.pages=='100-200' ){ %> checked <% } %>>
+                                        <label class="form-check-label fs-5" for="pages2" class="fs-4">100-200</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pages" id="pages3"
+                                        value="200-300" <% if(data.pages=='200-300' ){ %> checked <% } %>>
+                                        <label class="form-check-label fs-5" for="pages3" class="fs-4">200-300</label>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="city" class="form-label fw-bold fs-4">City:</label>
+                            </td>
+                            <td>
+                                <select class="form-select fs-5" id="city" name="city">
+                                    <% let city=['Surat', 'Mumbai' , 'Bangalore' , 'Delhi' , 'Pune' ]; city.map((val,
+                                        idx)=>{
+                                        %>
+                                        <option value="<%= val %>" <% if(data.city==val){ %> selected
+                                            <% } %> >
+                                                <%= val %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="description" class="form-label fw-bold fs-4">Description:</label>
+                            </td>
+                            <td>
+                                <textarea class="form-control fs-5" id="description" name="description" rows="3"
+                                    placeholder="Describe the book"><%= data.description %></textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <button type="submit" class="btn btn-outline-secondary btn-lg">Edit Details</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

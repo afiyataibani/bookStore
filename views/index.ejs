@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Form</title>
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            margin: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f0f4f8;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
+            border: 1px solid #dee2e6;
+        }
+
+        .form-title {
+            margin-bottom: 20px;
+        }
+
+        .form-control,
+        .form-select,
+        textarea {
+            background-color: #f7f7f7;
+            border: 1px solid #ced4da;
+        }
+
+        .form-control:focus,
+        .form-select:focus,
+        textarea:focus {
+            border-color: #6d766d;
+            box-shadow: 0 0 5px rgba(237, 254, 238, 0.128);
+        }
+
+        .btn-primary {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #357ab8;
+        }
+
+        .btn-danger {
+            background-color: #e57373;
+        }
+
+        .btn-warning {
+            background-color: #fdd835;
+        }
+
+
+        .table-bordered {
+            border: 1px solid #ddd;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f8e9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h2 class="text-center mb-4 form-title fw-bold text-secondary">Book Information Form</h2>
+            <form action="/insertData" method="post">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="title" class="form-label fw-bold fs-4">Title:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control fs-5" id="title" name="title" placeholder="Enter book title">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="author" class="form-label fw-bold fs-4">Author:</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control fs-5" id="author" name="author" placeholder="Enter author name">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="price" class="form-label fw-bold fs-4">Price:</label>
+                            </td>
+                            <td>
+                                <input type="number" class="form-control fs-5" id="price" name="price" placeholder="Enter price">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label class="form-label fw-bold fs-4">Language:</label>
+                            </td>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="english" name="language" value="English">
+                                    <label class="form-check-label fs-5" for="english">English</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="hindi" name="language" value="Hindi">
+                                    <label class="form-check-label fs-5" for="hindi">Hindi</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="gujarati" name="language" value="Gujarati">
+                                    <label class="form-check-label fs-5" for="gujarati">Gujarati</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="marathi" name="language" value="Marathi">
+                                    <label class="form-check-label fs-5" for="marathi">Marathi</label>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label class="form-label fw-bold fs-4">Pages:</label>
+                            </td>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pages" id="pages1" value="50-100">
+                                    <label class="form-check-label fs-5" for="pages1">50-100</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pages" id="pages2" value="100-200">
+                                    <label class="form-check-label fs-5" for="pages2">100-200</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pages" id="pages3" value="200-300">
+                                    <label class="form-check-label fs-5" for="pages3">200-300</label>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="city" class="form-label fw-bold fs-4">City:</label>
+                            </td>
+                            <td>
+                                <select class="form-select fs-5" id="city" name="city">
+                                    <option disabled selected>-- Select City--</option>
+                                    <% let city=['Surat', 'Mumbai' , 'Bangalore' , 'Delhi' , 'Pune' ]; city.map((val)=>
+                                        { %>
+                                        <option value="<%= val %>">
+                                            <%= val %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="description" class="form-label fw-bold fs-4">Description:</label>
+                            </td>
+                            <td>
+                                <textarea class="form-control fs-5" id="description" name="description" rows="3" placeholder="Describe the book"></textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <button type="submit" class="btn btn-outline-secondary btn-lg">Add Book Data</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+        <h2 class="text-center mt-5 mb-4 fw-bold text-secondary">Book Data</h2>
+        <table class="table table-bordered text-center table-striped">
+            <thead>
+                <tr>
+                    <th class="fs-4 bg-dark text-white">Author</th>
+                    <th class="fs-4 bg-dark text-white">Title</th>
+                    <th class="fs-4 bg-dark text-white">Price</th>
+                    <th class="fs-4 bg-dark text-white">Language</th>
+                    <th class="fs-4 bg-dark text-white">Pages</th>
+                    <th class="fs-4 bg-dark text-white">City</th>
+                    <th class="fs-4 bg-dark text-white">Description</th>
+                    <th class="fs-4 bg-dark text-white">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.map((val)=> { %>
+                    <tr>
+                        <td class="fs-4">
+                            <%= val.title %>
+                        </td>
+                        <td class="fs-4">
+                            <%= val.author %>
+                        </td>
+                        <td class="fs-4">
+                            <%= val.price %>
+                        </td>
+                        <td class="fs-4">
+                            <%= val.language %>
+                        </td>
+                        <td class="fs-4">
+                            <%= val.pages %>
+                        </td>
+                        <td class="fs-4">
+                            <%= val.city %>
+                        </td>
+                        <td class="fs-4">
+                            <%= val.description %>
+                        </td>
+                        <td class="fs-4">
+                            <a href="/deleteData/<%= val.id %>" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="/editData/<%= val.id %>" class="btn btn-warning btn-sm">Edit</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
